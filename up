@@ -11,7 +11,7 @@ ${SCRIPTPATH}/scripts/mouse-settings.sh &
 ln -s ${SCRIPTPATH}/alacritty.yml ~/.config/alacritty/alacritty.yml &
 
 # Create symlink for rofi
-ln -s ${SCRIPTPATH}/rofi/theme/config2.rasi ~/.config/rofi/config.rasi &
+ln -s ${SCRIPTPATH}/config.rasi ~/.config/rofi/config.rasi &
 
 # Create symlink for picom
 ln -s ${SCRIPTPATH}/picom.conf ~/.config/picom/ &
