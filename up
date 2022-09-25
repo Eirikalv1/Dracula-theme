@@ -3,10 +3,19 @@ export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 ${SCRIPTPATH}/down &
 
-#boot compton or picom if it exists
-if [ -x "$(command -v picom)" ]; then
-  picom &> /dev/null &
-fi
+
+# Change mouse acceleration
+${SCRIPTPATH}/scripts/mouse-settings.sh &
+
+# Create symlink for alacritty
+ln -s ${SCRIPTPATH}/alacritty.yml ~/.config/alacritty/alacritty.yml &
+
+# Create symlink for rofi
+ln -s ${SCRIPTPATH}/rofi/theme/config2.rasi ~/.config/rofi/config.rasi &
+
+# Create symlink for picom
+ln -s ${SCRIPTPATH}/picom.conf ~/.config/picom/ &
+
 
 #set the theme.toml config
 leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
@@ -28,4 +37,7 @@ do
   monitor=$monitor polybar -c config.ini main &> /tmp/polybar.log &
 done
 
-${SCRIPTPATH}/scripts/mouse-settings.sh
+#boot compton or picom if it exists
+if [ -x "$(command -v picom)" ]; then
+  picom &> /dev/null &
+fi
